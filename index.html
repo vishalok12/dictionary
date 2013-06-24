@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+</head>
+<body>
+	<div id="dictionary"></div>
+	<section class="add-word word-card">
+		<div class="front-face">
+			<input type="text" id="name" placeholder="Insert Word">
+		</div>
+		<div class="back-face">
+			<div class="title">Meaning</div>
+			<textarea id="meaning" placeholder="Write Meaning..."></textarea>
+			<input type="button" value="done" id="new-word-btn">
+			<div class="back">↩</div>
+		</div>
+	</section>
+
+	<script id="wordTemplate" type="text/template">
+		<div class="front-face"><%= name.slice(0,1).toUpperCase() + name.slice(1) %></div>
+		<div class="back-face">
+			<div class="title"><%= name.slice(0,1).toUpperCase() + name.slice(1) %></div>
+			<div class="meaning"><%= meaning %></div>
+		</div>
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+	<script src="js/models/word.js"></script>
+	<script src="js/collections/dictionary.js"></script>
+	<script src="js/views/word.js"></script>
+	<script src="js/views/dictionary.js"></script>
+	<script src="js/app.js"></script>
+	<script type="text/javascript">
+		$('.add-word .front-face').bind('click', function (e) {
+			var $this = $(this);
+			var clickedElement = e.originalEvent.srcElement;
+			var $input = $this.children('#name');
+
+			if ( $input.val() === '' || clickedElement === $input[0] ) { return; }
+			flip(this);
+
+			return false;
+		});
+
+		$('.add-word #name').bind('keypress', function(e) {
+			if (e.keyCode === 13) {
+				flip( $(this).parent() );
+			}
+		});
+
+		$('.add-word .back').bind('click', function() {
+			flip( $(this).parent() );
+			return false;
+		});
+
+		$('#new-word-btn').bind('click', function() {
+			var wordName = $('#name').val();
+			var meaning = $('#meaning').val();
+			
+			app.dictionaryView.collections.add({
+				name: wordName,
+				meaning: meaning
+			});
+
+			$('#name').val('');
+			$('#meaning').val('');
+
+			flip( $('.add-word .back-face') );
+		});
+
+		function flip(elem) {
+			$(elem).css('-webkit-transform', 'rotateY(180deg)');
+			$(elem).siblings().css('-webkit-transform', 'rotateY(0deg)');
+		}
+	</script>
+</body>
+</html>

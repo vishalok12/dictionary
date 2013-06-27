@@ -2,7 +2,7 @@
 <html>
 <head>
 		<meta charset="UTF-8">
-		<title>Title</title>
+		<title>Dictionary</title>
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 </head>
 <body>
@@ -11,7 +11,7 @@
 		<div class="front-face">
 			<input type="text" id="name" placeholder="Insert Word">
 		</div>
-		<div class="back-face">
+		<div class="back-face" style="-webkit-transform:rotateY(180deg);">
 			<div class="title">Meaning</div>
 			<textarea id="meaning" placeholder="Write Meaning..."></textarea>
 			<input type="button" value="done" id="new-word-btn">
@@ -20,16 +20,22 @@
 	</section>
 
 	<script id="wordTemplate" type="text/template">
-		<div class="front-face"><%= name.slice(0,1).toUpperCase() + name.slice(1) %></div>
+		<div class="front-face">
+			<div class="word">
+				<%= name.slice(0,1).toUpperCase() + name.slice(1) %>
+			</div>
+			<div class="remove">X</div>
+		</div>
 		<div class="back-face">
 			<div class="title"><%= name.slice(0,1).toUpperCase() + name.slice(1) %></div>
 			<div class="meaning"><%= meaning %></div>
 		</div>
 	</script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
-	<script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+	<script src="js/lib/jquery-2.0.0.min.js"></script>
+	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
+	<script type="text/javascript" src="js/lib/backbone-min.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
 	<script src="js/models/word.js"></script>
 	<script src="js/collections/dictionary.js"></script>
 	<script src="js/views/word.js"></script>
@@ -39,28 +45,37 @@
 		$('.add-word .front-face').bind('click', function (e) {
 			var $this = $(this);
 			var clickedElement = e.originalEvent.srcElement;
-			var $input = $this.children('#name');
+			var $input = $('#name');
 
-			if ( $input.val() === '' || clickedElement === $input[0] ) { return; }
+			if ( $input.val().trim() === '' || clickedElement === $input[0] ) { return; }
 			flip(this);
+			$('#meaning').focus();
 
 			return false;
 		});
 
 		$('.add-word #name').bind('keypress', function(e) {
-			if (e.keyCode === 13) {
+			if ( e.keyCode === 13 && $('#name').val().trim() ) {
 				flip( $(this).parent() );
+				$('#meaning').focus();
 			}
 		});
 
 		$('.add-word .back').bind('click', function() {
 			flip( $(this).parent() );
+
+			$('#name').focus();
+
 			return false;
 		});
 
 		$('#new-word-btn').bind('click', function() {
-			var wordName = $('#name').val();
-			var meaning = $('#meaning').val();
+			var wordName = $('#name').val().trim();
+			var meaning = $('#meaning').val().trim();
+
+			if (!wordName || !meaning) {
+				return;
+			}
 			
 			app.dictionaryView.collections.add({
 				name: wordName,

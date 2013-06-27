@@ -4,7 +4,10 @@ app.DictionaryView = Backbone.View.extend({
 	el: '#dictionary',
 
 	initialize: function(words) {
-		this.collections = new app.Dictionary(words);
+		this.collections = new app.Dictionary();
+		this.collections.fetch({
+			reset: true
+		});
 		this.listenTo(this.collections, "add", this.renderWord);
 		this.render();
 	},
@@ -20,6 +23,7 @@ app.DictionaryView = Backbone.View.extend({
 
 	renderWord: function(word) {
 		var wordView = new app.WordView({ model: word });
+		wordView.model.save();
 		this.$el.append( wordView.render().el );
 	}
 

@@ -26,20 +26,22 @@ body {
     -webkit-transition: -webkit-transform 600ms ease-in-out; }
   .word-card .front-face {
     background: #84d379;
-    color: #e93c4a;
-    font-size: 26px;
-    text-shadow: 1px 1px 0px #857576;
-    line-height: 260px;
     box-shadow: #a4d15f 1px 1px 6px, #a4d15f -1px -1px 6px;
     -webkit-transform: rotateY(0deg); }
     .word-card .front-face:hover {
       background: #90e684; }
+      .word-card .front-face:hover .remove {
+        opacity: 1; }
   .word-card .back-face {
     background-color: #92a1d1;
     -webkit-transform: rotateY(180deg);
     box-shadow: #89aee2 1px 1px 6px, #89aee2 -1px -1px 6px; }
     .word-card .back-face:hover {
       background: #abbfff; }
+  .word-card .word {
+    color: #e93c4a;
+    font-size: 26px;
+    text-shadow: 1px 1px 0px #857576; }
   .word-card .title {
     font-size: 26px;
     margin-bottom: 10px;
@@ -47,6 +49,23 @@ body {
     font-weight: bold; }
   .word-card .meaning {
     color: #244b3a; }
+  .word-card .remove {
+    position: absolute;
+    top: 8px;
+    padding: 0px 7px;
+    border-radius: 15px;
+    right: 8px;
+    -webkit-user-select: none;
+    font-size: 23px;
+    background: #88d87c;
+    color: #81ca76;
+    opacity: 0; }
+    .word-card .remove:hover {
+      background: #e04e4e;
+      color: #bee755;
+      box-shadow: 0px 1px 2px rgba(224, 78, 78, 0.5); }
+  .word-card .word {
+    margin-top: 115px; }
 
 .add-word .back-face {
   cursor: auto; }
@@ -75,11 +94,13 @@ body {
   height: 26px;
   padding: 4px 10px;
   font-size: 20px;
-  width: 130px; }
+  width: 130px;
+  margin-top: 115px; }
 
 #meaning {
   border: none;
   height: 122px;
   padding: 4px 10px;
   font-size: 16px;
-  width: 163px; }
+  width: 163px;
+  max-width: 163px; }

@@ -9,7 +9,8 @@ app.WordView = Backbone.View.extend({
 
 	events: {
 		'click .front-face': "flip",
-		'click .back-face': "flipBack"
+		'click .back-face': "flipBack",
+		'click .remove': "deleteWord"
 	},
 
 	initialize: function() {
@@ -23,6 +24,11 @@ app.WordView = Backbone.View.extend({
 		this.$el.html( this.template( this.model.toJSON() ) );
 
 		return this;
+	},
+
+	deleteWord: function() {
+		this.model.destroy();
+		this.remove();
 	},
 
 	// remove: function() {

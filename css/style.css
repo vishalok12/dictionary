@@ -28,17 +28,12 @@ body {
     background: #84d379;
     box-shadow: #a4d15f 1px 1px 6px, #a4d15f -1px -1px 6px;
     -webkit-transform: rotateY(0deg); }
-    .word-card .front-face:hover {
-      background: #90e684; }
-      .word-card .front-face:hover .remove {
-        opacity: 1; }
   .word-card .back-face {
     background-color: #92a1d1;
     -webkit-transform: rotateY(180deg);
     box-shadow: #89aee2 1px 1px 6px, #89aee2 -1px -1px 6px; }
-    .word-card .back-face:hover {
-      background: #abbfff; }
   .word-card .word {
+    margin-top: 115px;
     color: #e93c4a;
     font-size: 26px;
     text-shadow: 1px 1px 0px #857576; }
@@ -60,12 +55,6 @@ body {
     background: #88d87c;
     color: #81ca76;
     opacity: 0; }
-    .word-card .remove:hover {
-      background: #e04e4e;
-      color: #bee755;
-      box-shadow: 0px 1px 2px rgba(224, 78, 78, 0.5); }
-  .word-card .word {
-    margin-top: 115px; }
 
 .add-word .back-face {
   cursor: auto; }
@@ -104,3 +93,14 @@ body {
   font-size: 16px;
   width: 163px;
   max-width: 163px; }
+
+.hover .front-face:hover {
+  background: #90e684; }
+  .hover .front-face:hover .remove {
+    opacity: 1; }
+.hover .back-face:hover {
+  background: #abbfff; }
+.hover .remove:hover {
+  background: #e04e4e;
+  color: #bee755;
+  box-shadow: 0px 1px 2px rgba(224, 78, 78, 0.5); }

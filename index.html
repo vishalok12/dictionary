@@ -5,19 +5,21 @@
 		<title>Dictionary</title>
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 </head>
-<body>
-	<div id="dictionary"></div>
-	<section class="add-word word-card">
-		<div class="front-face">
-			<input type="text" id="name" placeholder="Insert Word">
-		</div>
-		<div class="back-face" style="-webkit-transform:rotateY(180deg);">
-			<div class="title">Meaning</div>
-			<textarea id="meaning" placeholder="Write Meaning..."></textarea>
-			<input type="button" value="done" id="new-word-btn">
-			<div class="back">↩</div>
-		</div>
-	</section>
+<body class="hover">
+	<div id="wrapper">
+		<section id="dictionary"></section>
+		<section class="add-word word-card">
+			<div class="front-face">
+				<input type="text" id="name" placeholder="Insert Word">
+			</div>
+			<div class="back-face" style="-webkit-transform:rotateY(180deg);">
+				<div class="title">Meaning</div>
+				<textarea id="meaning" placeholder="Write Meaning..."></textarea>
+				<input type="button" value="done" id="new-word-btn">
+				<div class="back">↩</div>
+			</div>
+		</section>
+	</div>
 
 	<script id="wordTemplate" type="text/template">
 		<div class="front-face">
@@ -42,56 +44,70 @@
 	<script src="js/views/dictionary.js"></script>
 	<script src="js/app.js"></script>
 	<script type="text/javascript">
-		$('.add-word .front-face').bind('click', function (e) {
-			var $this = $(this);
-			var clickedElement = e.originalEvent.srcElement;
-			var $input = $('#name');
+		// $('.add-word .front-face').bind('click', function (e) {
+		// 	var $this = $(this);
+		// 	var clickedElement = e.originalEvent.srcElement;
+		// 	var $input = $('#name');
 
-			if ( $input.val().trim() === '' || clickedElement === $input[0] ) { return; }
-			flip(this);
-			$('#meaning').focus();
+		// 	if ( $input.val().trim() === '' || clickedElement === $input[0] ) { return; }
+		// 	flip(this);
+		// 	$('#meaning').focus();
 
-			return false;
-		});
+		// 	return false;
+		// });
 
-		$('.add-word #name').bind('keypress', function(e) {
-			if ( e.keyCode === 13 && $('#name').val().trim() ) {
-				flip( $(this).parent() );
-				$('#meaning').focus();
-			}
-		});
+		// $('.add-word #name').bind('keypress', function(e) {
+		// 	if ( e.keyCode === 13 && $('#name').val().trim() ) {
+		// 		flip( $(this).parent() );
+		// 		$('#meaning').focus();
+		// 	}
+		// });
 
-		$('.add-word .back').bind('click', function() {
-			flip( $(this).parent() );
+		// $('.add-word .back').bind('click', function() {
+		// 	flip( $(this).parent() );
 
-			$('#name').focus();
+		// 	$('#name').focus();
 
-			return false;
-		});
+		// 	return false;
+		// });
 
-		$('#new-word-btn').bind('click', function() {
-			var wordName = $('#name').val().trim();
-			var meaning = $('#meaning').val().trim();
+		// $('#new-word-btn').bind('click', function() {
+		// 	var wordName = $('#name').val().trim();
+		// 	var meaning = $('#meaning').val().trim();
 
-			if (!wordName || !meaning) {
-				return;
-			}
+		// 	if (!wordName || !meaning) {
+		// 		return;
+		// 	}
 			
-			app.dictionaryView.collections.add({
-				name: wordName,
-				meaning: meaning
-			});
+		// 	app.dictionaryView.collections.add({
+		// 		name: wordName,
+		// 		meaning: meaning
+		// 	});
 
-			$('#name').val('');
-			$('#meaning').val('');
+		// 	$('#name').val('');
+		// 	$('#meaning').val('');
 
-			flip( $('.add-word .back-face') );
-		});
+		// 	flip( $('.add-word .back-face') );
+		// });
 
-		function flip(elem) {
-			$(elem).css('-webkit-transform', 'rotateY(180deg)');
-			$(elem).siblings().css('-webkit-transform', 'rotateY(0deg)');
-		}
+		// function flip(elem) {
+		// 	$(elem).css('-webkit-transform', 'rotateY(180deg)');
+		// 	$(elem).siblings().css('-webkit-transform', 'rotateY(0deg)');
+		// }
+
+		(function() {
+			var timeToLook = true;
+			window.onscroll = function(e) {
+				if (timeToLook) {
+					timeToLook = false;
+					$('body').removeClass('hover');
+					setTimeout(function() {
+						timeToLook = true;
+						$('body').addClass('hover');
+					}, 1000);
+				}
+			}
+		})();
 	</script>
 </body>
 </html>

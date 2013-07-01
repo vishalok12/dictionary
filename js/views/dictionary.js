@@ -26,8 +26,10 @@ app.DictionaryView = Backbone.View.extend({
 	},
 
 	render: function() {
+		this.$dictionary.html('');
+		remembered = app.wordType === "remembered" ? true : false;
 		//this.el is what we defined in tagName. use $el to get access to jQuery html() function
-		this.collections.where( {remembered: false} ).map(function(word) {
+		this.collections.where( {remembered: remembered} ).map(function(word) {
 			this.renderWord(word);
 		}, this);
 

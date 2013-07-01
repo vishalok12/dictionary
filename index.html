@@ -26,7 +26,8 @@
 			<div class="word">
 				<%= name.slice(0,1).toUpperCase() + name.slice(1) %>
 			</div>
-			<div class="remove">X</div>
+			<div class="done-mark" title="mark done">✓</div>
+			<div class="remove">✖</div>
 		</div>
 		<div class="back-face">
 			<div class="title"><%= name.slice(0,1).toUpperCase() + name.slice(1) %></div>
@@ -42,59 +43,9 @@
 	<script src="js/collections/dictionary.js"></script>
 	<script src="js/views/word.js"></script>
 	<script src="js/views/dictionary.js"></script>
+	<script src="js/routers/router.js"></script>
 	<script src="js/app.js"></script>
 	<script type="text/javascript">
-		// $('.add-word .front-face').bind('click', function (e) {
-		// 	var $this = $(this);
-		// 	var clickedElement = e.originalEvent.srcElement;
-		// 	var $input = $('#name');
-
-		// 	if ( $input.val().trim() === '' || clickedElement === $input[0] ) { return; }
-		// 	flip(this);
-		// 	$('#meaning').focus();
-
-		// 	return false;
-		// });
-
-		// $('.add-word #name').bind('keypress', function(e) {
-		// 	if ( e.keyCode === 13 && $('#name').val().trim() ) {
-		// 		flip( $(this).parent() );
-		// 		$('#meaning').focus();
-		// 	}
-		// });
-
-		// $('.add-word .back').bind('click', function() {
-		// 	flip( $(this).parent() );
-
-		// 	$('#name').focus();
-
-		// 	return false;
-		// });
-
-		// $('#new-word-btn').bind('click', function() {
-		// 	var wordName = $('#name').val().trim();
-		// 	var meaning = $('#meaning').val().trim();
-
-		// 	if (!wordName || !meaning) {
-		// 		return;
-		// 	}
-			
-		// 	app.dictionaryView.collections.add({
-		// 		name: wordName,
-		// 		meaning: meaning
-		// 	});
-
-		// 	$('#name').val('');
-		// 	$('#meaning').val('');
-
-		// 	flip( $('.add-word .back-face') );
-		// });
-
-		// function flip(elem) {
-		// 	$(elem).css('-webkit-transform', 'rotateY(180deg)');
-		// 	$(elem).siblings().css('-webkit-transform', 'rotateY(0deg)');
-		// }
-
 		(function() {
 			var timeToLook = true;
 			window.onscroll = function(e) {

@@ -7,6 +7,9 @@
 </head>
 <body class="hover">
 	<div id="wrapper">
+		<section id="nav-search">
+			<input type="text" id="word-search">
+		</section>
 		<section id="dictionary"></section>
 		<section class="add-word word-card">
 			<div class="front-face">
@@ -40,13 +43,23 @@
 	<script type="text/javascript" src="js/lib/backbone-min.js"></script>
 	<script type="text/javascript" src="js/lib/backbone.localStorage.js"></script>
 	<script src="js/models/word.js"></script>
+	<script src="js/models/search.js"></script>
 	<script src="js/collections/dictionary.js"></script>
 	<script src="js/views/word.js"></script>
+	<script src="js/views/search.js"></script>
 	<script src="js/views/dictionary.js"></script>
 	<script src="js/routers/router.js"></script>
 	<script src="js/app.js"></script>
 	<script type="text/javascript">
 		(function() {
+			// $('#word-search').bind('keyup', function(e) {
+			// 	var searchKey = $(this).val();
+			// 	app.wordType = 'search';
+			// 	var modelIdList = getMatchedWords(searchKey);
+			// 	app.dictionaryView.render(modelIdList);
+
+			// });
+
 			var timeToLook = true;
 			window.onscroll = function(e) {
 				if (timeToLook) {
@@ -59,6 +72,60 @@
 				}
 			}
 		})();
+
+		// function Node() {
+		// 	this.wordIdList = [];
+		// 	this.next = null;
+		// }
+
+		// Node.prototype.setNextAtIndex = function(i, id) {
+		// 	this.wordIdList.push(id);
+		// 	if ( !this.next ) {
+		// 		this.next = [];
+		// 	}
+		// 	if ( !this.next[i] ) {
+		// 		this.next[i] = new Node();
+		// 	}
+			
+		// 	return this.next[i];
+		// }
+
+		// function getMatchedWords(substring) {
+		// 	var i = 0;
+		// 	if (typeof root === "undefined") {
+		// 		root = parseWordsToTree(app.dictionaryView.collections.models);
+		// 	}
+		// 	var node = root;
+		// 	var s = substring.toLowerCase();
+		// 	while (i < s.length && node) {
+		// 		node = node.next ? node.next[ s[i].charCodeAt() - 97 ] : null;
+		// 		i++;
+		// 	}
+			
+		// 	if (node) return node.wordIdList;
+		// 	return [];
+		// }
+
+		// function parseWordsToTree(models) {
+		// 	var root = new Node();
+		// 	var word, node;
+		// 	var i, j;
+			
+		// 	for (i = 0; i < models.length; i++) {
+		// 		word = models[i].get('name').toLowerCase();
+		// 		node = root;
+		// 		for (j = 0; j < word.length; j++) {
+		// 			if (!node.next) {
+		// 	  		node.next = [];
+		// 			}
+		// 			// node.next[ word[j].charCodeAt() - 97 ] = new Node();
+		// 			node = node.setNextAtIndex( word[j].charCodeAt() - 97, models[i].cid );
+		// 		}
+		// 	}
+			
+		// 	return root;
+		// }
+
 	</script>
 </body>
 </html>

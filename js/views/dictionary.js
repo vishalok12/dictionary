@@ -19,21 +19,43 @@ app.DictionaryView = Backbone.View.extend({
 		this.collections.fetch({
 			reset: true
 		});
+		this.searchView = new app.SearchView({
+			model: new app.Search({words: this.collections.pluck('name')})
+		});
 
-		this.listenTo(this.collections, "add", this.renderWord);
+		this.listenTo(this.collections, "add", this.addWord);
+		this.listenTo(this.collections, "destroy", this.removeWord);
 		
 		this.render();
 	},
 
-	render: function() {
+	render: function(wordNames) {
 		this.$dictionary.html('');
-		remembered = app.wordType === "remembered" ? true : false;
+		var remembered = app.wordType === "remembered" ? true : false;
 		//this.el is what we defined in tagName. use $el to get access to jQuery html() function
-		this.collections.where( {remembered: remembered} ).map(function(word) {
+		var filteredModels = this.collections.where( {remembered: remembered} );
+		if (wordNames) {
+			wordNames = wordNames.map(function(word) {
+				return word.toLowerCase();
+			});
+			filteredModels = filteredModels.filter(function(model) {
+				return wordNames.indexOf(model.get('name')) + 1;
+			});
+		}
+		filteredModels.map(function(word) {
 			this.renderWord(word);
 		}, this);
 
 		return this;
+	},
+
+	addWord: function(word) {
+		this.renderWord(word);
+		this.searchView.model.addWord( word.get('name') );
+	},
+
+	removeWord: function(word) {
+		this.searchView.model.removeWord( word.get('name') );
 	},
 
 	renderWord: function(word) {

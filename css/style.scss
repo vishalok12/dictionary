@@ -147,3 +147,25 @@ body {
 		}
 	}
 }
+
+#nav-search {
+	text-align: right;
+	margin: 10px;
+}
+
+#word-search {
+	width: 160px;
+	padding: 6px 10px 6px 36px;
+	border: 1px solid rgb(0, 211, 51);
+	font-size: 18px;
+	background: url('../img/search.png') no-repeat;
+	background-size: 30px;
+	background-position: 0px 7px;
+
+	&:focus {
+		background-position: 0 -34px;
+		box-shadow: 0 0 2px rgb(0, 211, 51);
+		border-color: transparent;
+		outline: none;
+	}
+}

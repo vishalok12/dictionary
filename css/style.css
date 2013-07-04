@@ -117,3 +117,21 @@ body {
 .hover .remove:active, .hover .done-mark:active {
   box-shadow: none;
   margin-top: 1px; }
+
+#nav-search {
+  text-align: right;
+  margin: 10px; }
+
+#word-search {
+  width: 160px;
+  padding: 6px 10px 6px 36px;
+  border: 1px solid #00d333;
+  font-size: 18px;
+  background: url("../img/search.png") no-repeat;
+  background-size: 30px;
+  background-position: 0px 7px; }
+  #word-search:focus {
+    background-position: 0 -34px;
+    box-shadow: 0 0 2px #00d333;
+    border-color: transparent;
+    outline: none; }

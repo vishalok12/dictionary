@@ -31,7 +31,10 @@ app.get( '/api', function( request, response ) {
 });
 
 //Connect to database
-mongoose.connect( 'mongodb://localhost/vocab_database' );
+var mongoUri = process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    'mongodb://localhost/vocab_database';
+mongoose.connect( mongoUri );
 
 //Schemas
 var Word = new mongoose.Schema({

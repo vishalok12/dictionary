@@ -30,6 +30,7 @@ app.get( '/api', function( request, response ) {
     response.send( 'Library API is running ' + request.type );
 });
 
+/*
 //Connect to database
 var mongoUri = process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
@@ -46,10 +47,12 @@ var Word = new mongoose.Schema({
 
 //Models
 var WordModel = mongoose.model( 'Word', Word );
+*/
 
 //Get a list of all words
 app.get( '/api/words', function( request, response ) {
     console.log('request for books');
+/*
     return WordModel.find( function( err, words ) {
         if( !err ) {
             return response.send( words );
@@ -57,9 +60,12 @@ app.get( '/api/words', function( request, response ) {
             return console.log( err );
         }
     });
+*/
+		return response.send( 'Mil gayi request' );
 });
 
 //Insert a new word
+/*
 app.post( '/api/words', function( request, response ) {
     var word = new WordModel({
         name: request.body.name,
@@ -75,6 +81,7 @@ app.post( '/api/words', function( request, response ) {
     });
     return response.send( word );
 });
+*/
 
 // Get a single word by id
 // app.get( '/api/books/:id', function( request, response ) {

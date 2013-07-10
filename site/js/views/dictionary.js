@@ -16,9 +16,7 @@ app.DictionaryView = Backbone.View.extend({
 		this.$addWord = this.$el.find('.add-word');
 		
 		this.collections = new app.Dictionary();
-		this.collections.fetch({
-			reset: true
-		});
+		this.collections.fetch();
 		this.searchView = new app.SearchView({
 			model: new app.Search({words: this.collections.pluck('name')})
 		});

@@ -91,7 +91,7 @@ app.post( '/api/words', function( request, response ) {
 //Update a word
 app.put( '/api/words/:id', function( request, response ) {
     console.log( 'Updating word ' + request.body.name );
-    return BookModel.findById( request.params.id, function( err, word ) {
+    return WordModel.findById( request.params.id, function( err, word ) {
         word.name = request.body.name;
         word.meaning = request.body.meaning;
         word.remembered = request.body.remembered;
@@ -110,7 +110,7 @@ app.put( '/api/words/:id', function( request, response ) {
 //Delete a word
 app.delete( '/api/words/:id', function( request, response ) {
     console.log( 'Deleting word with id: ' + request.params.id );
-    return wordModel.findById( request.params.id, function( err, word ) {
+    return WordModel.findById( request.params.id, function( err, word ) {
         return word.remove( function( err ) {
             if( !err ) {
                 console.log( 'word removed' );

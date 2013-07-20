@@ -1,11 +1,17 @@
 body {
 	font-family: ubuntu;
+	margin: 0;
 }
 
 ::selection {
 	text-shadow: none;
 	background: rgb(216, 72, 72);
 	color: rgb(255, 255, 255);
+}
+
+#wrapper {
+	overflow: overlay;
+	min-height: 585px;
 }
 
 .word-card {
@@ -167,5 +173,22 @@ body {
 		box-shadow: 0 0 2px rgb(0, 211, 51);
 		border-color: transparent;
 		outline: none;
+	}
+}
+
+#footer {
+	background: rgb(194, 164, 164);
+	width: 100%;
+	margin: 30px 0 0;
+}
+
+#nav-links {
+	list-style: none;
+	padding: 25px 15px;
+	margin: 0;
+
+	li {
+		display: inline-block;
+		margin: 0 10px;
 	}
 }

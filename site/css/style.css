@@ -1,10 +1,15 @@
 body {
-  font-family: ubuntu; }
+  font-family: ubuntu;
+  margin: 0; }
 
 ::selection {
   text-shadow: none;
   background: #d84848;
   color: white; }
+
+#wrapper {
+  overflow: overlay;
+  min-height: 585px; }
 
 .word-card {
   width: 205px;
@@ -29,10 +34,9 @@ body {
     -webkit-backface-visibility: hidden;
     -webkit-transition: -webkit-transform 600ms ease-in-out; }
   .word-card .front-face {
-    background: rgb(132, 211, 121);
+    background: #84d379;
     box-shadow: #a4d15f 1px 1px 6px, #a4d15f -1px -1px 6px;
-    -webkit-transform: rotateY(0deg); 
-}
+    -webkit-transform: rotateY(0deg); }
   .word-card .back-face {
     background-color: #92a1d1;
     -webkit-transform: rotateY(180deg);
@@ -136,3 +140,16 @@ body {
     box-shadow: 0 0 2px #00d333;
     border-color: transparent;
     outline: none; }
+
+#footer {
+  background: #c2a4a4;
+  width: 100%;
+  margin: 30px 0 0; }
+
+#nav-links {
+  list-style: none;
+  padding: 25px 15px;
+  margin: 0; }
+  #nav-links li {
+    display: inline-block;
+    margin: 0 10px; }

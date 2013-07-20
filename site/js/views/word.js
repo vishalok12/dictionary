@@ -41,6 +41,7 @@ app.WordView = Backbone.View.extend({
 	},
 
 	isHidden: function() {
+		if (app.wordType === 'all') return false;
 		var remembered = this.model.get('remembered');
 		return (remembered && app.wordType !== "remembered") ||
 			(!remembered && app.wordType === "remembered");

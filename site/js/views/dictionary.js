@@ -28,10 +28,16 @@ app.DictionaryView = Backbone.View.extend({
 	},
 
 	render: function(wordNames) {
+		var filteredModels;
+
 		this.$dictionary.html('');
-		var remembered = app.wordType === "remembered" ? true : false;
-		//this.el is what we defined in tagName. use $el to get access to jQuery html() function
-		var filteredModels = this.collections.where( {remembered: remembered} );
+		if (app.wordType === 'all') {
+			filteredModels = this.collections.models;
+		} else {
+			var remembered = app.wordType === "remembered" ? true : false;
+			//this.el is what we defined in tagName. use $el to get access to jQuery html() function
+			filteredModels = this.collections.where( {remembered: remembered} );
+		}
 		if (wordNames) {
 			wordNames = wordNames.map(function(word) {
 				return word.toLowerCase();

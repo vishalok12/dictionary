@@ -4,7 +4,9 @@ app = app || {};
 app.Router = Backbone.Router.extend({
 	routes: {
 		'name/:name': 'getWordByName',
-		'remembered': 'showRemembered'
+		'remembered': 'showRemembered',
+		'all': 'showAll',
+		'*actions': 'showToRemember'
 	},
 
 	getWordByName: function(name) {
@@ -13,6 +15,16 @@ app.Router = Backbone.Router.extend({
 
 	showRemembered: function() {
 		app.wordType = "remembered";
+		app.dictionaryView && app.dictionaryView.render();
+	},
+
+	showToRemember: function() {
+		app.wordType = '';
+		app.dictionaryView && app.dictionaryView.render();
+	},
+
+	showAll: function() {
+		app.wordType = 'all';
 		app.dictionaryView && app.dictionaryView.render();
 	}
 });

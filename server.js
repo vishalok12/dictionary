@@ -2,7 +2,8 @@
 var application_root = __dirname,
     express = require( 'express' ), //Web framework
     path = require( 'path' ), //Utilities for dealing with file paths
-    mongoose = require( 'mongoose' ); //MongoDB integration
+    mongoose = require( 'mongoose' ), //MongoDB integration
+    dispatcher = require('./lib/dispatcher.js'); //require custom dispatcher
 
 //Create server
 var app = express();
@@ -15,6 +16,10 @@ app.configure( function() {
     //checks request.body for HTTP method overrides
     app.use( express.methodOverride() );
 
+    app.use( express.cookieParser() );
+
+    app.use(express.session({secret: '1234567890QWERTY'}));
+
     //perform route lookup based on url and HTTP method
     app.use( app.router );
 
@@ -26,8 +31,29 @@ app.configure( function() {
 });
 
 // Routes
-app.get( '/api', function( request, response ) {
-    response.send( 'Library API is running ' + request.type );
+app.get( '/', function( request, response ) {
+    //dispatch our request
+    dispatcher.dispatch(request, response);
+});
+
+app.post('/signup', function(request, response) {
+    request.session.userId = '';
+    var user = new UserModel({
+        first_name: request.body.firstName,
+        last_name: request.body.lastName,
+        email: request.body.email
+    });
+    user.save( function( err, user ) {
+        if( !err ) {
+            response.cookie('userid', user._id, { maxAge: 5 * 24 * 60 * 60 * 1000 });
+            request.session.userId = user._id;
+            response.redirect('/');
+
+            return console.log( 'created' );
+        } else {
+            return console.log( err );
+        }
+    });
 });
 
 //Connect to database
@@ -40,18 +66,25 @@ mongoose.connect( mongoUri );
 var Word = new mongoose.Schema({
     name: String,
     meaning: String,
-    remembered: Boolean
+    remembered: Boolean,
+    userId: String
 });
 
+var User = new mongoose.Schema({
+    first_name: String,
+    last_name: String,
+    email: String
+});
 
 //Models
 var WordModel = mongoose.model( 'Word', Word );
+var UserModel = mongoose.model( 'User', User );
 
 //Get a list of all words
 app.get( '/api/words', function( request, response ) {
-    console.log('request for books');
+    console.log('sessionId: ' + request.session.userId);
 
-    return WordModel.find( function( err, words ) {
+    return WordModel.find( { 'userId': request.session.userId }, 'name meaning remembered _id', function( err, words ) {
         if( !err ) {
             return response.send( words );
         } else {
@@ -65,7 +98,8 @@ app.post( '/api/words', function( request, response ) {
     var word = new WordModel({
         name: request.body.name,
         meaning: request.body.meaning,
-        remembered: request.body.remembered
+        remembered: request.body.remembered,
+        userId: request.session.userId
     });
     word.save( function( err ) {
         if( !err ) {

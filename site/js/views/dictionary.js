@@ -115,7 +115,13 @@ app.DictionaryView = Backbone.View.extend({
 });
 
 function flip(elem) {
-	$(elem).css('-webkit-transform', 'rotateY(180deg)');
-	$(elem).siblings().css('-webkit-transform', 'rotateY(0deg)');
+	$(elem).css({
+		'-webkit-transform': 'rotateY(180deg)',
+		'-moz-transform': 'rotateY(180deg)'
+	});
+	$(elem).siblings().css({
+		'-webkit-transform': 'rotateY(0deg)',
+		'-moz-transform': 'rotateY(0deg)'
+	});
 }
 })();

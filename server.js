@@ -36,12 +36,14 @@ app.get( '/', function( request, response ) {
     dispatcher.dispatch(request, response);
 });
 
+// signup
 app.post('/signup', function(request, response) {
     request.session.userId = '';
     var user = new UserModel({
         first_name: request.body.firstName,
         last_name: request.body.lastName,
-        email: request.body.email
+        email: request.body.email,
+        password: request.body.password
     });
     user.save( function( err, user ) {
         if( !err ) {
@@ -50,6 +52,33 @@ app.post('/signup', function(request, response) {
             response.redirect('/');
 
             return console.log( 'created' );
+        } else {
+            return console.log( err );
+        }
+    });
+});
+
+// signin
+app.post('/session', function(request, response) {
+    var email = request.body.userName;
+    var password = request.body.password;
+    console.log('email: ' + email);
+    console.log('password: ' + password);
+
+    UserModel.findOne( {email: email}, function(err, userDetails) {
+        console.log(err);
+        console.log(userDetails);
+        if( !err ) {
+            if (userDetails.password === password) {
+                console.log('matched');
+                response.cookie('userid', userDetails._id, { maxAge: 5 * 24 * 60 * 60 * 1000 });
+                request.session.userId = userDetails._id;
+                response.redirect('/');
+            } else {
+                console.log('unmatched');
+
+                response.redirect("/");
+            }
         } else {
             return console.log( err );
         }
@@ -73,7 +102,8 @@ var Word = new mongoose.Schema({
 var User = new mongoose.Schema({
     first_name: String,
     last_name: String,
-    email: String
+    email: String,
+    password: String
 });
 
 //Models

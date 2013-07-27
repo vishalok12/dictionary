@@ -1,3 +1,5 @@
+@import "cross-browser-generator";
+
 body {
 	font-family: ubuntu;
 	margin: 0;
@@ -10,8 +12,8 @@ body {
 }
 
 #wrapper {
-	overflow: overlay;
-	min-height: 585px;
+	// overflow: overlay;
+	// min-height: 585px;
 }
 
 .word-card {
@@ -22,8 +24,8 @@ body {
 	margin: 10px 25px 40px;
 	text-align: center;
 	cursor: pointer;
-	-webkit-transform-style: preserve-3d;
-	-webkit-perspective: 1500;
+	@include transform-style(preserve-3d);
+	@include perspective(1500px);
 	&.hide {
 		display: none;
 	}
@@ -35,18 +37,20 @@ body {
 		top: 0;
 		left: 0;
 		border-radius: 5px;
-		-webkit-backface-visibility: hidden;
-		-webkit-transition: -webkit-transform 600ms ease-in-out;
+		@include backface-visibility(hidden);
+		@include transition-prefixed (transform, 600ms, ease-in-out);
 	}
 	.front-face {
 		background: rgb(132, 211, 121);
 		box-shadow: rgb(164, 209, 95) 1px 1px 6px, rgb(164, 209, 95) -1px -1px 6px;
-		-webkit-transform: rotateY(0deg);
+		@include transform(rotateY(0deg));
+		z-index: 1;
 	}
 	.back-face {
 		background-color: rgb(146, 161, 209);
-		-webkit-transform: rotateY(180deg);
+		@include transform(rotateY(180deg));
 		box-shadow: rgb(137, 174, 226) 1px 1px 6px, rgb(137, 174, 226) -1px -1px 6px;
+		z-index: 0;
 	}
 	.word {
 		margin-top: 115px;
@@ -64,15 +68,17 @@ body {
 		color: rgb(36, 75, 58);
 	}
 	.remove, .done-mark {
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
 		position: absolute;
 		top: 8px;
-		padding: 0px 6px 0px 5px;
 		border-radius: 15px;
-		-webkit-user-select: none;
-		font-size: 23px;
-		background: rgb(136, 216, 124);
-		color: rgb(129, 202, 118);
+		font-size: 20px;
+		background: #8ADD7E;
+		color: #86D37B;
 		opacity: 0;
+		@include user-select(none);
 	}
 	.remove {
 		right: 8px;
@@ -93,7 +99,7 @@ body {
 		background: rgb(199, 97, 72);
 		border-radius: 18px;
 		right: 8px;
-		-webkit-user-select: none;
+		@include user-select(none);
 	}
 }
 
@@ -156,7 +162,10 @@ body {
 
 #nav-search {
 	text-align: right;
-	margin: 10px;
+	margin: 16px;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 #word-search {
@@ -176,10 +185,10 @@ body {
 	}
 }
 
-#footer {
-	background: rgb(194, 164, 164);
+#natigation {
 	width: 100%;
-	margin: 30px 0 0;
+	position: absolute;
+	top: 0;
 }
 
 #nav-links {

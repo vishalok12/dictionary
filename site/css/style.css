@@ -7,10 +7,6 @@ body {
   background: #d84848;
   color: white; }
 
-#wrapper {
-  overflow: overlay;
-  min-height: 585px; }
-
 .word-card {
   width: 205px;
   height: 270px;
@@ -20,7 +16,13 @@ body {
   text-align: center;
   cursor: pointer;
   -webkit-transform-style: preserve-3d;
-  -webkit-perspective: 1500; }
+  -moz-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-perspective: 1500px;
+  -moz-perspective: 1500px;
+  -o-perspective: 1500px;
+  perspective: 1500px; }
   .word-card.hide {
     display: none; }
   .word-card .front-face, .word-card .back-face {
@@ -32,15 +34,29 @@ body {
     left: 0;
     border-radius: 5px;
     -webkit-backface-visibility: hidden;
-    -webkit-transition: -webkit-transform 600ms ease-in-out; }
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 600ms ease-in-out;
+    -moz-transition: -moz-transform 600ms ease-in-out;
+    -o-transition: -o-transform 600ms ease-in-out;
+    transition: transform 600ms ease-in-out; }
   .word-card .front-face {
     background: #84d379;
     box-shadow: #a4d15f 1px 1px 6px, #a4d15f -1px -1px 6px;
-    -webkit-transform: rotateY(0deg); }
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    z-index: 1; }
   .word-card .back-face {
     background-color: #92a1d1;
     -webkit-transform: rotateY(180deg);
-    box-shadow: #89aee2 1px 1px 6px, #89aee2 -1px -1px 6px; }
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    box-shadow: #89aee2 1px 1px 6px, #89aee2 -1px -1px 6px;
+    z-index: 0; }
   .word-card .word {
     margin-top: 115px;
     color: #e93c4a;
@@ -54,15 +70,20 @@ body {
   .word-card .meaning {
     color: #244b3a; }
   .word-card .remove, .word-card .done-mark {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     position: absolute;
     top: 8px;
-    padding: 0px 6px 0px 5px;
     border-radius: 15px;
+    font-size: 20px;
+    background: #8ADD7E;
+    color: #86D37B;
+    opacity: 0;
     -webkit-user-select: none;
-    font-size: 23px;
-    background: #88d87c;
-    color: #81ca76;
-    opacity: 0; }
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none; }
   .word-card .remove {
     right: 8px; }
   .word-card .done-mark {
@@ -77,7 +98,10 @@ body {
   background: #c76148;
   border-radius: 18px;
   right: 8px;
-  -webkit-user-select: none; }
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
 
 #new-word-btn {
   padding: 8px 22px;
@@ -125,7 +149,10 @@ body {
 
 #nav-search {
   text-align: right;
-  margin: 10px; }
+  margin: 16px;
+  position: absolute;
+  top: 0;
+  right: 0; }
 
 #word-search {
   width: 160px;
@@ -141,10 +168,10 @@ body {
     border-color: transparent;
     outline: none; }
 
-#footer {
-  background: #c2a4a4;
+#natigation {
   width: 100%;
-  margin: 30px 0 0; }
+  position: absolute;
+  top: 0; }
 
 #nav-links {
   list-style: none;

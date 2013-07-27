@@ -7,6 +7,14 @@
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 </head>
 <body class="hover">
+	<nav id="navigation">
+		<ul id="nav-links">
+			<li><a href="#">Unremembered</a></li>
+			<li><a href="#/remembered">Remembered</a></li>
+			<li><a href="#/all">All</a></li>
+		</ul>
+	</nav>
+
 	<div id="wrapper">
 		<section id="nav-search">
 			<input type="text" id="word-search">
@@ -16,7 +24,7 @@
 			<div class="front-face">
 				<input type="text" id="name" placeholder="Insert Word">
 			</div>
-			<div class="back-face" style="-webkit-transform:rotateY(180deg);">
+			<div class="back-face">
 				<div class="title">Meaning</div>
 				<textarea id="meaning" placeholder="Write Meaning..."></textarea>
 				<input type="button" value="done" id="new-word-btn">
@@ -24,13 +32,6 @@
 			</div>
 		</section>
 	</div>
-	<footer id="footer">
-		<ul id="nav-links">
-			<li><a href="#">Unremembered</a></li>
-			<li><a href="#/remembered">Remembered</a></li>
-			<li><a href="#/all">All</a></li>
-		</ul>
-	</footer>
 
 	<script id="wordTemplate" type="text/template">
 		<div class="front-face">

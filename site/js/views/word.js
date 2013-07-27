@@ -48,13 +48,25 @@ app.WordView = Backbone.View.extend({
 	},
 
 	flip: function() {
-		this.$el.find('.front-face').css('-webkit-transform', 'rotateY(180deg)');
-		this.$el.find('.back-face').css('-webkit-transform', 'rotateY(360deg)');
+		this.$el.find('.front-face').css({
+			'-webkit-transform': 'rotateY(180deg)',
+			'-moz-transform': 'rotateY(180deg)'
+		});
+		this.$el.find('.back-face').css({
+			'-webkit-transform': 'rotateY(360deg)',
+			'-moz-transform': 'rotateY(360deg)'
+		});
 	},
 
 	flipBack: function() {
-		this.$el.find('.front-face').css('-webkit-transform', 'rotateY(0deg)');
-		this.$el.find('.back-face').css('-webkit-transform', 'rotateY(180deg)');
+		this.$el.find('.front-face').css({
+			'-webkit-transform': 'rotateY(0deg)',
+			'-moz-transform': 'rotateY(0deg)'
+		});
+		this.$el.find('.back-face').css({
+			'-webkit-transform': 'rotateY(180deg)',
+			'-moz-transform': 'rotateY(180deg)'
+		});
 	}
 
 });

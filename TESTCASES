@@ -1,0 +1,9 @@
+1. In a word, the 'Name' or 'Meaning' should not be empty.
+
+2. When we enter a name -> it should be saved to the database
+                        -> should be added to the collection
+
+3. When we delete -> removed from database
+                  -> removed from collection
+
+4. 

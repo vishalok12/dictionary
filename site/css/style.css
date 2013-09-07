@@ -8,8 +8,8 @@ body {
   color: white; }
 
 .word-card {
-  width: 205px;
-  height: 270px;
+  width: 184px;
+  height: 230px;
   position: relative;
   float: left;
   margin: 10px 25px 40px;
@@ -58,12 +58,12 @@ body {
     box-shadow: #89aee2 1px 1px 6px, #89aee2 -1px -1px 6px;
     z-index: 0; }
   .word-card .word {
-    margin-top: 115px;
+    margin-top: 96px;
     color: #e93c4a;
-    font-size: 26px;
+    font-size: 25px;
     text-shadow: 1px 1px 0px #857576; }
   .word-card .title {
-    font-size: 26px;
+    font-size: 25px;
     margin-bottom: 10px;
     color: rgba(54, 58, 71, 0.5);
     font-weight: bold; }
@@ -77,8 +77,8 @@ body {
     top: 8px;
     border-radius: 15px;
     font-size: 20px;
-    background: #8ADD7E;
-    color: #86D37B;
+    background: #88d87c;
+    color: #81ca76;
     opacity: 0;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -111,23 +111,23 @@ body {
   cursor: pointer;
   box-shadow: 1px 1px 2px #646464;
   position: absolute;
-  bottom: 25px;
-  left: 74px; }
+  bottom: 18px;
+  left: 59px; }
 
 #name {
   border: none;
   height: 26px;
   padding: 4px 10px;
-  font-size: 20px;
+  font-size: 18px;
   width: 130px;
-  margin-top: 115px; }
+  margin-top: 96px; }
 
 #meaning {
   border: none;
-  height: 122px;
+  height: 110px;
   padding: 4px 10px;
-  font-size: 16px;
-  width: 163px;
+  font-size: 15px;
+  width: 88%;
   max-width: 163px; }
 
 .hover .front-face:hover {

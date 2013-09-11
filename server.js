@@ -95,6 +95,7 @@ mongoose.connect( mongoUri );
 var Word = new mongoose.Schema({
     name: String,
     meaning: String,
+    synonyms: String,
     remembered: Boolean,
     userId: String
 });
@@ -114,7 +115,7 @@ var UserModel = mongoose.model( 'User', User );
 app.get( '/api/words', function( request, response ) {
     console.log('sessionId: ' + request.session.userId);
 
-    return WordModel.find( { 'userId': request.session.userId }, 'name meaning remembered _id', function( err, words ) {
+    return WordModel.find( { 'userId': request.session.userId }, 'name meaning synonyms remembered _id', function( err, words ) {
         if( !err ) {
             return response.send( words );
         } else {
@@ -129,7 +130,8 @@ app.post( '/api/words', function( request, response ) {
         name: request.body.name,
         meaning: request.body.meaning,
         remembered: request.body.remembered,
-        userId: request.session.userId
+        userId: request.session.userId,
+        synonyms: request.body.synonyms.toString()
     });
     word.save( function( err ) {
         if( !err ) {

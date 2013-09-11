@@ -96,6 +96,12 @@ app.DictionaryView = Backbone.View.extend({
 	getParams: function() {
 		var wordName = $('#name').val().trim();
 		var meaning = $('#meaning').val().trim();
+		var synonyms = $('#synonyms').val()
+																 .replace(/\s+/g, '')
+																 .split(',')
+																 .filter(function(synonym) {
+																		return synonym != '';
+																 });
 
 		if (!wordName || !meaning) {
 			return;
@@ -103,7 +109,8 @@ app.DictionaryView = Backbone.View.extend({
 		
 		this.collections.create({
 			name: wordName,
-			meaning: meaning
+			meaning: meaning,
+			synonyms: synonyms
 		});
 
 		$('#name').val('');
@@ -116,12 +123,25 @@ app.DictionaryView = Backbone.View.extend({
 
 function flip(elem) {
 	$(elem).css({
-		'-webkit-transform': 'rotateY(180deg)',
-		'-moz-transform': 'rotateY(180deg)'
+		'-webkit-transform': 'rotateY(90deg)',
+		'-moz-transform': 'rotateY(90deg)'
 	});
 	$(elem).siblings().css({
-		'-webkit-transform': 'rotateY(0deg)',
-		'-moz-transform': 'rotateY(0deg)'
+		'-webkit-transform': 'rotateY(90deg)',
+		'-moz-transform': 'rotateY(90deg)'
+	});
+
+	$(elem).one('transitionend', function() {
+		$(elem).css({
+			'-webkit-transform': 'rotateY(180deg)',
+			'-moz-transform': 'rotateY(180deg)',
+			'z-index': 0
+		});
+		$(elem).siblings().css({
+			'-webkit-transform': 'rotateY(0deg)',
+			'-moz-transform': 'rotateY(0deg)',
+			'z-index': 1
+		});
 	});
 }
 })();

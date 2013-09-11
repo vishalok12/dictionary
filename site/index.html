@@ -27,6 +27,7 @@
 			<div class="back-face">
 				<div class="title">Meaning</div>
 				<textarea id="meaning" placeholder="Write Meaning..."></textarea>
+				<input type="text" id="synonyms" placeholder="Synonyms (comma separated)">
 				<input type="button" value="done" id="new-word-btn">
 				<div class="back">↩</div>
 			</div>
@@ -44,6 +45,7 @@
 		<div class="back-face">
 			<div class="title"><%= name.slice(0,1).toUpperCase() + name.slice(1) %></div>
 			<div class="meaning"><%= meaning %></div>
+			<div id="synonyms"><%= "synonyms: " + synonyms.toString() %></div>
 		</div>
 	</script>
 
@@ -73,6 +75,16 @@
 				}
 			}
 		})();
+	</script>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-43963934-1', 'vocabtree.herokuapp.com');
+	  ga('send', 'pageview');
+
 	</script>
 </body>
 </html>

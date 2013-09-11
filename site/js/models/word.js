@@ -7,6 +7,7 @@ app.Word = Backbone.Model.extend({
 	},
 	parse: function (response) {
 		response.id = response._id;
+		response.synonyms = response.synonyms ? response.synonyms.split(',') : [];
 		return response;
 	},
 	validate: function(attributes, options) {

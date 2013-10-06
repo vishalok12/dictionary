@@ -9,16 +9,25 @@
 <body class="hover">
 	<nav id="navigation">
 		<ul id="nav-links">
-			<li><a href="#">Unremembered</a></li>
-			<li><a href="#/remembered">Remembered</a></li>
-			<li><a href="#/all">All</a></li>
+			<li class="menu"><a href="#">Unremembered</a></li>
+			<li class="menu"><a href="#/remembered">Remembered</a></li>
+			<li class="menu"><a href="#/all">All</a></li>
+			<li id="play" class="menu">
+				<div>Play</div>
+				<div class="submenu">
+					<ul>
+						<li><a href="#/play/loop">Loop</a></li>
+					</ul>
+				</div>
+			</li>
 		</ul>
-	</nav>
 
-	<div id="wrapper">
 		<section id="nav-search">
 			<input type="text" id="word-search">
 		</section>
+	</nav>
+
+	<div id="wrapper">
 		<section id="dictionary"></section>
 		<section class="add-word word-card">
 			<div class="front-face">
@@ -32,6 +41,20 @@
 				<div class="back">↩</div>
 			</div>
 		</section>
+	</div>
+
+	<div id="game-wrapper" style="display:none;">
+		<div class="loop-game">
+			<div class="word-container"></div>
+			<div class="overlay"></div>
+			<div class="game-buttons">
+				<ul>
+					<li id="lg-remembered" class="game-option">✓</li>
+					<li id="lg-not-remembered" class="game-option">✖</li>
+					<li id="lg-next" class="game-option">➡</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
 	<script id="wordTemplate" type="text/template">
@@ -56,9 +79,11 @@
 	<script src="js/models/word.js"></script>
 	<script src="js/models/search.js"></script>
 	<script src="js/collections/dictionary.js"></script>
+	<script src="js/collections/game.js"></script>
 	<script src="js/views/word.js"></script>
 	<script src="js/views/search.js"></script>
 	<script src="js/views/dictionary.js"></script>
+	<script src="js/views/game.js"></script>
 	<script src="js/routers/router.js"></script>
 	<script src="js/app.js"></script>
 	<script type="text/javascript">

@@ -11,6 +11,12 @@ body {
 	color: rgb(255, 255, 255);
 }
 
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 #wrapper {
 	// overflow: overlay;
 	// min-height: 585px;
@@ -185,6 +191,10 @@ body {
 	position: absolute;
 	top: 0;
 	right: 0;
+	background: #FFF;
+	border: solid #FFF;
+	border-width: 2px 5px;
+	border-radius: 4px;
 }
 
 #word-search {
@@ -204,20 +214,62 @@ body {
 	}
 }
 
-#natigation {
-	width: 100%;
-	position: absolute;
-	top: 0;
+#navigation {
+	position: relative;
+	z-index: 1000;
 }
 
 #nav-links {
 	list-style: none;
 	padding: 25px 15px;
 	margin: 0;
+	background: #44BFE6;
 
 	li {
-		display: inline-block;
+		cursor: pointer;
+	}
+
+	a {
+		text-decoration: none;
+		color: white;
+	}
+
+	.menu {
+		position: relative;
 		margin: 0 10px;
+		padding: 10px;
+		display: inline-block;
+		color: white;
+
+		.submenu {
+			display: none;
+			background: #22A5D8;
+			color: #FFF;
+			font-weight: bold;
+			position: absolute;
+			top: 35px;
+			border: 1px solid #63A0C9;
+		}
+
+		ul {
+			padding: 0;
+			margin: 6px 0;
+		}
+
+		&:hover {
+			.submenu {
+				display: block;
+			}
+		}
+
+		li {
+			display: block;
+			padding: 5px 20px;
+
+			&:hover {
+				background: #2CBAF1;
+			}
+		}
 	}
 }
 
@@ -226,4 +278,75 @@ body {
 	font-size: 18px;
 	position: absolute;
 	bottom: 15px;
+}
+
+#game-wrapper {
+	height: 600px;
+	background: #C8DDE4;
+	padding-top: 1px;
+}
+
+.loop-game {
+	width: 400px;
+	height: 400px;
+	margin: 93px auto;
+	position: relative;
+
+	.word-container {
+		position: absolute;
+		height: 68%;
+		background: #FFF;
+		padding: 16%;
+		width: 68%;
+		border-radius: 200px;
+		overflow: hidden;
+	}
+
+	.cover {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #C8DDE4;
+		-webkit-transform: translateY(400px);
+		-webkit-transition: -webkit-transform 1s ease-in-out;
+		border: 2px solid #B3C8CF;
+		border-radius: 200px;
+	}
+
+	.game-buttons {
+		position: absolute;
+		bottom: 20px;
+		left: 34%;
+	}
+
+	.game-option {
+		display: inline-block;
+		font-size: 26px;
+		color: #FFF;
+		background: #338083;
+		width: 42px;
+		height: 42px;
+		text-align: center;
+		line-height: 42px;
+		cursor: pointer;
+		-webkit-transition: border-radius .2s linear;
+		opacity: 0.5;
+
+		&:hover {
+			border-radius: 21px;
+			background: #43A9AD;
+		}
+
+		&.active {
+			opacity: 1;
+		}
+	}
+
+	.overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
 }

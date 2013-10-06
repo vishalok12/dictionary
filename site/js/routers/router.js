@@ -6,6 +6,7 @@ app.Router = Backbone.Router.extend({
 		'name/:name': 'getWordByName',
 		'remembered': 'showRemembered',
 		'all': 'showAll',
+		'play/:name': 'playGame',
 		'*actions': 'showToRemember'
 	},
 
@@ -26,6 +27,12 @@ app.Router = Backbone.Router.extend({
 	showAll: function() {
 		app.wordType = 'all';
 		app.dictionaryView && app.dictionaryView.render();
+	},
+
+	playGame: function(name) {
+		new app.GameView({
+			type: name
+		});
 	}
 });
 

@@ -36,6 +36,9 @@ app.GameView = Backbone.View.extend({
 
 	render: function() {
 		var currentWord = this.wordPool[this.currentIndex];
+		if (this.wordView) {
+			this.wordView.close();
+		}
 		this.wordView = new app.WordView( {model: currentWord} );
 
 		this.$wordContainer.html( this.wordView.render().$el );

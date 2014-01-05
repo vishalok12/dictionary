@@ -36,6 +36,10 @@ app.WordView = Backbone.View.extend({
 		this.remove();
 	},
 
+	close: function() {
+		this.stopListening();
+	},
+
 	toggleRemembered: function() {
 		this.model.save({
 			remembered: !this.model.get('remembered')
@@ -44,7 +48,7 @@ app.WordView = Backbone.View.extend({
 	},
 
 	pronounceWord: function() {
-		this.audio.src = "https://ssl.gstatic.com/dictionary/static/sounds/de/0/" + 
+		this.audio.src = "https://ssl.gstatic.com/dictionary/static/sounds/de/0/" +
 			this.model.get('name').toLowerCase() + ".mp3";
 		this.audio.play();
 
@@ -52,7 +56,7 @@ app.WordView = Backbone.View.extend({
 	},
 
 	isHidden: function() {
-		if (app.wordType === 'all') return false;
+		if (app.wordType === 'all') { return false; }
 		var remembered = this.model.get('remembered');
 		return (remembered && app.wordType !== "remembered") ||
 			(!remembered && app.wordType === "remembered");

@@ -82,6 +82,8 @@ app.DictionaryView = Backbone.View.extend({
 		if ( e.keyCode === 13 && $('#name').val().trim() ) {
 			flip( $(e.currentTarget).parent() );
 			$('#meaning').focus();
+		} else {
+			$('#name').val()
 		}
 	},
 
@@ -117,6 +119,14 @@ app.DictionaryView = Backbone.View.extend({
 		$('#meaning').val('');
 
 		flip( $('.add-word .back-face') );
+	},
+
+	getMeaning: function(phrase) {
+		var url = "http://glosbe.com/gapi/translate?from=eng&dest=eng&format=json&"
+			"phrase=" + phrase + "&callback=?";
+		$.getJSON(, function(data) {
+		  console.log(data);
+		});
 	}
 
 });
@@ -144,4 +154,5 @@ function flip(elem) {
 		});
 	});
 }
+
 })();

@@ -72,18 +72,15 @@ app.DictionaryView = Backbone.View.extend({
 		var $input = $('#name');
 
 		if ( $input.val().trim() === '' || clickedElement === $input[0] ) { return; }
-		flip( e.currentTarget );
-		$('#meaning').focus();
+
+		fetchMeaningAndFlip($input.val().trim());
 
 		return false;
 	},
 
 	flipBack: function(e) {
-		if ( e.keyCode === 13 && $('#name').val().trim() ) {
-			flip( $(e.currentTarget).parent() );
-			$('#meaning').focus();
-		} else {
-			$('#name').val()
+		if ( e.keyCode === 13 ) {
+			fetchMeaningAndFlip($('#name').val().trim());
 		}
 	},
 
@@ -119,14 +116,6 @@ app.DictionaryView = Backbone.View.extend({
 		$('#meaning').val('');
 
 		flip( $('.add-word .back-face') );
-	},
-
-	getMeaning: function(phrase) {
-		var url = "http://glosbe.com/gapi/translate?from=eng&dest=eng&format=json&"
-			"phrase=" + phrase + "&callback=?";
-		$.getJSON(, function(data) {
-		  console.log(data);
-		});
 	}
 
 });
@@ -152,6 +141,37 @@ function flip(elem) {
 			'-moz-transform': 'rotateY(0deg)',
 			'z-index': 1
 		});
+	});
+}
+
+function fetchMeaningAndFlip(word) {
+	$('.add-word .loading').removeClass('hidden');
+	getMeaning(word, function(meaning) {
+		$('.add-word .loading').addClass('hidden');
+		$('#meaning').val(meaning);
+		flip($('.add-word .front-face'));
+		$('#meaning').focus();
+	});
+}
+
+function getMeaning(phrase, callback) {
+	$.ajax({
+		url: "http://glosbe.com/gapi/translate",
+		crossDomain: true,
+		dataType: "jsonp",
+		data: {
+			from: "eng",
+			dest: "eng",
+			format: "json",
+			phrase: phrase,
+			page: 1,
+			pretty: true
+		},
+	}).done(function(data) {
+		if (data && data.result == "ok" && data.tuc) {
+			var meanings = _.pluck(data.tuc[0].meanings.slice(0,4), 'text').join('; ');
+			callback(meanings);
+		}
 	});
 }
 

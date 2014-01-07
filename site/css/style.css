@@ -74,7 +74,7 @@ ul {
     font-weight: bold; }
   .word-card .meaning {
     color: #244b3a; }
-  .word-card .remove, .word-card .done-mark {
+  .word-card .remove, .word-card .done-mark, .word-card .edit {
     width: 30px;
     height: 30px;
     line-height: 30px;
@@ -93,6 +93,10 @@ ul {
     right: 8px; }
   .word-card .done-mark {
     right: 45px; }
+  .word-card .edit {
+    right: 79px;
+    background: url("../img/edit.png") center no-repeat;
+    background-size: 24px !important; }
 
 .add-word .back-face {
   cursor: auto; }
@@ -119,13 +123,24 @@ ul {
   bottom: 18px;
   left: 59px; }
 
+.word-input-wrapper {
+  margin-top: 100px; }
+
 #name {
   border: none;
   height: 26px;
-  padding: 4px 10px;
+  padding: 4px 20px 4px 10px;
   font-size: 18px;
   width: 130px;
-  margin-top: 96px; }
+  vertical-align: top; }
+
+.loading {
+  width: 20px;
+  height: 34px;
+  display: inline-block;
+  background: url("../img/async-submit.gif") no-repeat;
+  background-position: center;
+  margin-left: -24px; }
 
 #meaning {
   border: none;
@@ -154,7 +169,7 @@ ul {
 
 .hover .front-face:hover {
   background: #90e684; }
-  .hover .front-face:hover .remove, .hover .front-face:hover .done-mark {
+  .hover .front-face:hover .remove, .hover .front-face:hover .done-mark, .hover .front-face:hover .edit {
     opacity: 1; }
 .hover .back-face:hover {
   background: #abbfff; }
@@ -165,9 +180,15 @@ ul {
 .hover .done-mark:hover {
   background: #fdf300;
   box-shadow: 0px 1px 2px rgba(224, 78, 78, 0.5); }
+.hover .edit:hover {
+  background: url("../img/edit-hover.png") center no-repeat; }
 .hover .remove:active, .hover .done-mark:active {
   box-shadow: none;
   margin-top: 1px; }
+.hover .edit:active {
+  box-shadow: none;
+  margin-top: 1px;
+  margin-right: 1px; }
 
 #nav-search {
   text-align: right;
@@ -293,3 +314,6 @@ ul {
     position: absolute;
     top: 0;
     left: 0; }
+
+.hidden {
+  opacity: 0; }

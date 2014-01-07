@@ -31,7 +31,10 @@
 		<section id="dictionary"></section>
 		<section class="add-word word-card">
 			<div class="front-face">
-				<input type="text" id="name" placeholder="Insert Word">
+				<div class="word-input-wrapper">
+					<input type="text" id="name" placeholder="Insert Word">
+					<div class="loading hidden"></div>
+				</div>
 			</div>
 			<div class="back-face">
 				<div class="title">Meaning</div>
@@ -62,6 +65,7 @@
 			<div class="word">
 				<label><%= name.slice(0,1).toUpperCase() + name.slice(1) %></label>
 			</div>
+			<div class="edit"></div>
 			<div class="done-mark" title="mark done">✓</div>
 			<div class="remove">✖</div>
 		</div>

@@ -168,10 +168,13 @@ function getMeaning(phrase, callback) {
 			pretty: true
 		},
 	}).done(function(data) {
+		var meanings;
 		if (data && data.result == "ok" && data.tuc) {
-			var meanings = _.pluck(data.tuc[0].meanings.slice(0,4), 'text').join('; ');
-			callback(meanings);
+			meanings = _.pluck(data.tuc[0].meanings.slice(0,4), 'text').join('; ');
+		} else {
+			meanings = '';
 		}
+		callback(meanings);
 	});
 }
 

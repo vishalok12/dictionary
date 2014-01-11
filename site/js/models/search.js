@@ -24,6 +24,7 @@
 					// node.next[ word[j].charCodeAt() - 97 ] = new Node();
 					node = node.setNextAtIndex( word[j].charCodeAt() - 97, i );
 				}
+				node.indexes.push(i);
 			}
 			
 			this.set( 'root', root );

@@ -50,6 +50,8 @@ app.DictionaryView = Backbone.View.extend({
 			this.renderWord(word);
 		}, this);
 
+		hideOtherContainers();
+
 		return this;
 	},
 
@@ -176,6 +178,12 @@ function getMeaning(phrase, callback) {
 		}
 		callback(meanings);
 	});
+}
+
+
+function hideOtherContainers() {
+	$('#game-wrapper').hide();
+	$('#wrapper').show();
 }
 
 })();

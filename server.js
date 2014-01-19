@@ -85,6 +85,28 @@ app.post('/session', function(request, response) {
     });
 });
 
+// api signin
+app.post('/api/session', function(request, response) {
+    var email = request.body.userName;
+    var password = request.body.password;
+
+    UserModel.findOne( {email: email}, function(err, userDetails) {
+        console.log(userDetails);
+        if( !err ) {
+            if (userDetails.password === password) {
+                response.set({'Content-Type': 'application/json'});
+                // response.send(callback + "({userId: \"" + userDetails._id + "\"})");
+                response.send({userId: userDetails._id});
+            } else {
+                console.log('unmatched');
+                response.status(404).send({error: 'not found'});
+            }
+        } else {
+            return console.log( err );
+        }
+    });
+});
+
 //Connect to database
 var mongoUri = process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
@@ -113,9 +135,19 @@ var UserModel = mongoose.model( 'User', User );
 
 //Get a list of all words
 app.get( '/api/words', function( request, response ) {
+    console.log('session: ' + JSON.stringify(request.session));
     console.log('sessionId: ' + request.session.userId);
+    var userId;
 
-    return WordModel.find( { 'userId': request.session.userId }, 'name meaning synonyms remembered _id', function( err, words ) {
+    if (request.session && request.session.userId) {
+        userId = request.session.userId;
+    } else if (request.query.userId) {
+    	userId = request.query.userId;
+    } else {
+    	console.log("user id is missing!");
+    }
+
+    return WordModel.find( { 'userId': request.session.userId }, 'name meaning synonyms remembered', function( err, words ) {
         if( !err ) {
             return response.send( words );
         } else {

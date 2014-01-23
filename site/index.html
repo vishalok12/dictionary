@@ -62,7 +62,7 @@
 
 	<script id="wordTemplate" type="text/template">
 		<div class="front-face">
-			<div class="word">
+			<div class="word <%= name.length < 14 ? '': name.length < 18 ? 'large': 'very-large' %>">
 				<label><%= name.slice(0,1).toUpperCase() + name.slice(1) %></label>
 			</div>
 			<div class="edit"></div>
@@ -70,7 +70,9 @@
 			<div class="remove">✖</div>
 		</div>
 		<div class="back-face">
-			<div class="title"><%= name.slice(0,1).toUpperCase() + name.slice(1) %></div>
+			<div class="title <%= name.length < 14 ? '': name.length < 18 ? 'large': 'very-large' %>">
+				<%= name.slice(0,1).toUpperCase() + name.slice(1) %>
+			</div>
 			<div class="meaning"><%= meaning %></div>
 			<div class="synonyms"><%= "synonyms: " + synonyms.toString() %></div>
 		</div>

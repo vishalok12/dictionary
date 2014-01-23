@@ -116,6 +116,7 @@ app.DictionaryView = Backbone.View.extend({
 
 		$('#name').val('');
 		$('#meaning').val('');
+		$('#synonyms').val('');
 
 		flip( $('.add-word .back-face') );
 	}

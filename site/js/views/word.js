@@ -26,7 +26,8 @@ app.WordView = Backbone.View.extend({
 	render: function() {
 		//this.el is what we defined in tagName. use $el to get access to jQuery html() function
 		this.$el.html( this.template( this.model.toJSON() ) )
-						.toggleClass('hide', this.isHidden());
+						.toggleClass('hide', this.isHidden())
+						.find('.meaning').perfectScrollbar({suppressScrollX: true});
 
 		return this;
 	},

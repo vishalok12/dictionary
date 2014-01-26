@@ -69,7 +69,7 @@ ul {
     text-shadow: 1px 1px 0px #857576; }
   .word-card .title {
     font-size: 25px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: rgba(54, 58, 71, 0.5);
     font-weight: bold; }
   .word-card .word.large, .word-card .title.large {
@@ -77,7 +77,21 @@ ul {
   .word-card .word.very-large, .word-card .title.very-large {
     font-size: 16px; }
   .word-card .meaning {
-    color: #244b3a; }
+    position: relative;
+    color: #244B3A;
+    width: 180px;
+    height: 142px;
+    overflow: hidden;
+    padding-right: 12px; }
+    .word-card .meaning ul {
+      list-style-type: disc;
+      margin: 0;
+      padding-left: 18px;
+      padding-top: 0; }
+  .word-card .m-desc {
+    text-align: left;
+    padding: 2px 0px;
+    font-size: 15px; }
   .word-card .remove, .word-card .done-mark, .word-card .edit {
     width: 30px;
     height: 30px;
@@ -167,9 +181,11 @@ ul {
   font-size: 16px;
   width: 162px;
   position: absolute;
-  bottom: 10px;
+  bottom: 6px;
   color: #244B3A;
   text-align: left; }
+  .synonyms .label {
+    opacity: 0.4; }
 
 .hover .front-face:hover {
   background: #90e684; }

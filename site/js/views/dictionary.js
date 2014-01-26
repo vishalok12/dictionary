@@ -99,7 +99,7 @@ app.DictionaryView = Backbone.View.extend({
 		var meaning = $('#meaning').val().trim();
 		var synonyms = $('#synonyms').val()
 																 .replace(/\s+/g, '')
-																 .split(',')
+																 .split(/,|;/)
 																 .filter(function(synonym) {
 																		return synonym != '';
 																 });

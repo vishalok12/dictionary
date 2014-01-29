@@ -16,17 +16,23 @@ app.Router = Backbone.Router.extend({
 
 	showRemembered: function() {
 		app.wordType = "remembered";
-		app.dictionaryView && app.dictionaryView.render();
+		if (app.dictionaryView) {
+			app.dictionaryView.render();
+		}
 	},
 
 	showToRemember: function() {
 		app.wordType = '';
-		app.dictionaryView && app.dictionaryView.render();
+		if (app.dictionaryView){
+			app.dictionaryView.render();
+		}
 	},
 
 	showAll: function() {
 		app.wordType = 'all';
-		app.dictionaryView && app.dictionaryView.render();
+		if (app.dictionaryView) {
+			app.dictionaryView.render();
+		}
 	},
 
 	playGame: function(name) {
@@ -36,7 +42,7 @@ app.Router = Backbone.Router.extend({
 	}
 });
 
-var router = new app.Router;
+var router = new app.Router();
 
 Backbone.history.start();
 })();

@@ -81,5 +81,5 @@
 		}
 		
 		return this.next[i];
-	}
+	};
 })();

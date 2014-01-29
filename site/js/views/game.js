@@ -17,7 +17,7 @@ app.GameView = Backbone.View.extend({
 		this.collections.fetch({
 			success: function() {
 				that.wordPool = that.collections.models.filter(function(model) {
-				  return !model.get('remembered');
+					return !model.get('remembered');
 				});
 				that.acceptAnswer(true);		// true when user can able to answer remembered/not remembered
 				that.nextWordPool = [];

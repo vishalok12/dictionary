@@ -98,11 +98,11 @@ app.DictionaryView = Backbone.View.extend({
 		var wordName = $('#name').val().trim();
 		var meaning = $('#meaning').val().trim();
 		var synonyms = $('#synonyms').val()
-																 .replace(/\s+/g, '')
-																 .split(/,|;/)
-																 .filter(function(synonym) {
-																		return synonym != '';
-																 });
+																.replace(/\s+/g, '')
+																.split(/,|;/)
+																.filter(function(synonym) {
+																		return synonym !== '';
+																});
 
 		if (!wordName || !meaning) {
 			return;

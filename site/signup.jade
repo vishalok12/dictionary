@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		title Welcome To VocabTree
+		link(rel="stylesheet", href="css/signup.css", type="text/css", media="screen")
+	
+	body
+		.sign-in
+			form#signin-form(method="post", name="signin", action="/session")
+				div
+					input#signin-email.inputtext(type="text", name="userName", placeholder="Email", autofocus="autofocus", required)
+				.clearfix
+					.lfloat
+						input#signin-password.inputtext(type="password", name="password", placeholder="Password", required)
+
+					.rfloat
+						button#signin-btn.btn(type="submit") Sign in
+
+		.reg-box
+			h2 Sign Up
+			form#reg(method="post", name="reg", action="/signup")
+				#reg-form-box.signup-box
+					.clearfix
+						.mrm.lfloat
+							input.inputtext#first-name(type="text", name="firstName", placeholder="First Name", required)
+						.mbm.rfloat
+							input.inputtext#last-name(type="text", name="lastName", placeholder="Last Name", required)
+
+					.clearfix
+						.mrm.lfloat
+							input#email-id.inputtext(type="email", name="email", placeholder="Enter Email", required)
+						.mbm.rfloat
+							input.inputtext#user-password(type="password", name="password", placeholder="Enter Password", required)
+					.clearfix
+						button#signup-btn.rfloat.btn(type="submit") Sign Up
+						span#async_status.hidden-elem
+							img.img(src="img/async-submit.gif", width="16", height="11")

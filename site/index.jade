@@ -4,8 +4,12 @@ html(lang="en")
 		meta(charset="UTF-8")
 		title Vocab Tree
 		link(rel="shortcut icon", type='image/x-icon', href='favicon.ico')
-		link(rel="stylesheet", href="css/output.min.css", type="text/css", media="screen")
-		link(rel="stylesheet", href="css/lib/perfect-scrollbar.css", type="text/css", media="screen")
+
+		if env === "production"
+			link(rel="stylesheet", href="css/output.min.css", type="text/css", media="screen")
+		else
+			link(rel="stylesheet", href="css/style.css", type="text/css", media="screen")
+			link(rel="stylesheet", href="css/lib/perfect-scrollbar.css", type="text/css", media="screen")
 	
 	body.hover
 		nav#navigation
@@ -80,7 +84,20 @@ html(lang="en")
 		script(type="text/javascript", src="js/lib/backbone-min.js")
 		script(type="text/javascript", src="js/lib/backbone.localStorage.js")
 		
-		script(type="text/javascript", src="js/main.min.js")
+		if env === "production"
+			script(type="text/javascript", src="js/main.min.js")
+		else
+			script(type="text/javascript", src="js/models/word.js")
+			script(type="text/javascript", src="js/models/search.js")
+			script(type="text/javascript", src="js/collections/dictionary.js")
+			script(type="text/javascript", src="js/collections/game.js")
+			script(type="text/javascript", src="js/views/word.js")
+			script(type="text/javascript", src="js/views/search.js")
+			script(type="text/javascript", src="js/views/dictionary.js")
+			script(type="text/javascript", src="js/views/game.js")
+			script(type="text/javascript", src="js/routers/router.js")
+			script(type="text/javascript", src="js/app.js")
+
 
 		//- script(type="text/javascript", src="js/models/word.js")
 		//- script(type="text/javascript", src="js/models/search.js")

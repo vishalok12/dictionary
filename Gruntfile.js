@@ -36,9 +36,6 @@ module.exports = function(grunt) {
 					report: 'min'
 				},
 				files: {
-					'site/js/lib.min.js': [
-						'site/js/lib/*.js'
-					],
 					'site/js/main.min.js': [
 						'site/js/main.js'
 					]
@@ -53,6 +50,11 @@ module.exports = function(grunt) {
 				'site/js/routers/*.js',
 				'site/js/app.js'
 			]
+		},
+		nodemon: {
+		  dev: {
+		    script: 'server.js'
+		  }
 		}
 	});
 
@@ -61,8 +63,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+	grunt.loadNpmTasks('grunt-nodemon');
 	
-	// Default task(s).
-	grunt.registerTask('default', ['cssmin', 'concat', 'uglify']);
-
+	// Define Tasks
+	grunt.registerTask('build', ['cssmin', 'concat', 'uglify']);
+	grunt.registerTask('run', ['nodemon']);
 };

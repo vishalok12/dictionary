@@ -175,17 +175,6 @@ app.post( '/api/words', function( request, response ) {
     return response.send( word );
 });
 
-// Get a single word by id
-// app.get( '/api/books/:id', function( request, response ) {
-//     return BookModel.findById( request.params.id, function( err, book ) {
-//         if( !err ) {
-//             return response.send( book );
-//         } else {
-//             return console.log( err );
-//         }
-//     });
-// });
-
 //Update a word
 app.put( '/api/words/:id', function( request, response ) {
     console.log( 'Updating word ' + request.body.name );

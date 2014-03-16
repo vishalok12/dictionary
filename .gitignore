@@ -1,3 +1,5 @@
 node_modules
 .sass-cache
 *~
+site/js/main.js
+
